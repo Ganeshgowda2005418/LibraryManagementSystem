@@ -82,4 +82,49 @@ public class BookDAO {
 
         }
     }
+public static void updateBook(
+        int id,
+        String title,
+        String author,
+        int quantity) {
+
+    try {
+
+        Connection conn =
+                DBConnection.connect();
+
+        String sql =
+                "UPDATE books SET title=?, author=?, quantity=? WHERE book_id=?";
+
+        PreparedStatement pst =
+                conn.prepareStatement(sql);
+
+        pst.setString(1, title);
+        pst.setString(2, author);
+        pst.setInt(3, quantity);
+        pst.setInt(4, id);
+
+        int rows =
+                pst.executeUpdate();
+
+        if(rows > 0) {
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Book Updated Successfully");
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Book Not Found");
+
+        }
+
+    } catch(Exception e) {
+
+        e.printStackTrace();
+
+    }
+}
 }
