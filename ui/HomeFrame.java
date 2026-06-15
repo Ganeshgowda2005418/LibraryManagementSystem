@@ -7,7 +7,7 @@ public class HomeFrame extends JFrame {
     public HomeFrame() {
 
         setTitle("Library Management System");
-        setSize(400, 450);
+        setSize(400, 550);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
@@ -23,13 +23,17 @@ public class HomeFrame extends JFrame {
         JButton updateBookBtn = new JButton("Update Book");
         updateBookBtn.setBounds(120, 230, 150, 40);
 
+        JButton searchBookBtn = new JButton("Search Book");
+        searchBookBtn.setBounds(120, 290, 150, 40);
+
         JButton exitBtn = new JButton("Exit");
-        exitBtn.setBounds(120, 290, 150, 40);
+        exitBtn.setBounds(120, 350, 150, 40);
 
         add(addBookBtn);
         add(viewBooksBtn);
         add(deleteBookBtn);
         add(updateBookBtn);
+        add(searchBookBtn);
         add(exitBtn);
 
         addBookBtn.addActionListener(e -> {
@@ -48,7 +52,13 @@ public class HomeFrame extends JFrame {
             new UpdateBookFrame();
         });
 
-        exitBtn.addActionListener(e -> System.exit(0));
+        searchBookBtn.addActionListener(e -> {
+            new SearchBookFrame();
+        });
+
+        exitBtn.addActionListener(e -> {
+            System.exit(0);
+        });
 
         setVisible(true);
     }

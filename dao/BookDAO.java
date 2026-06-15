@@ -126,5 +126,43 @@ public static void updateBook(
         e.printStackTrace();
 
     }
+        }
+public static String[] searchBook(int id) {
+
+    try {
+
+        Connection conn =
+                DBConnection.connect();
+
+        String sql =
+                "SELECT * FROM books WHERE book_id=?";
+
+        PreparedStatement pst =
+                conn.prepareStatement(sql);
+
+        pst.setInt(1, id);
+
+        var rs = pst.executeQuery();
+
+        if(rs.next()) {
+
+            return new String[] {
+
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    String.valueOf(
+                            rs.getInt("quantity"))
+
+            };
+
+        }
+
+    } catch(Exception e) {
+
+        e.printStackTrace();
+
+    }
+
+    return null;
 }
 }
