@@ -43,4 +43,43 @@ public class BookDAO {
 
         }
     }
+
+    public static void deleteBook(int id) {
+
+        try {
+
+            Connection conn =
+                    DBConnection.connect();
+
+            String sql =
+                    "DELETE FROM books WHERE book_id = ?";
+
+            PreparedStatement pst =
+                    conn.prepareStatement(sql);
+
+            pst.setInt(1, id);
+
+            int rows =
+                    pst.executeUpdate();
+
+            if (rows > 0) {
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Book Deleted Successfully");
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Book Not Found");
+
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+    }
 }
